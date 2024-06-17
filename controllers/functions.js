@@ -4,7 +4,7 @@ const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = twilio(accountSid, authToken);
 
-export const getSmsData = async (request, response, next) => {
+export const sendSmsData = async (request, response, next) => {
     try {
         await client.messages.create({
             body: request.body.text,
@@ -17,7 +17,6 @@ export const getSmsData = async (request, response, next) => {
                 messages: "sms send successfully",
                 success: true,
             })
-            return messages.toJSON()
         });
 
         // sendSms(request.body.phoneNumber, request.body.text, response)
